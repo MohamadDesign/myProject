@@ -1,0 +1,17 @@
+.force-directed-graph {
+  position: relative;
+}
+
+.tooltip-container {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  background-color: #4d4f5c;
+  text-align: left;
+  width: auto;
+  padding: 5px;
+  border-radius: 5px;
+  transition: 0.5s;
+  color: #fff;
+  font-weight: 300;
+}

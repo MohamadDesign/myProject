@@ -1,0 +1,68 @@
+<div class="main-container">
+  <div class="card-container">
+    <div class="login-pic">
+      <img
+        src="https://colorlib.com/etc/lf/Login_v1/images/img-01.png"
+        alt="user-pic"
+      />
+    </div>
+    <form
+      (ngSubmit)="onSubmit()"
+      class="validation-form"
+      [formGroup]="loginForm"
+    >
+      <span class="login-title">صفحه ورود</span>
+      <div class="validate-input email">
+        <input
+          [(ngModel)]="username"
+          type="email"
+          class="input-field form-control"
+          placeholder="نام کاربری"
+          name="username"
+          formControlName="username"
+        />
+        <div
+          class="username-validate"
+          *ngIf="
+            loginForm.get('username')?.hasError('required') &&
+            (loginForm.get('username')?.touched || formSubmitted)
+          "
+        >
+          نام کاربری معتبر استفاده کنید.
+        </div>
+        <span class="input-span"></span>
+        <span class="input-icon">
+          <fa-icon [icon]="envelope"></fa-icon>
+        </span>
+      </div>
+      <div class="validate-input password">
+        <input
+          [(ngModel)]="password"
+          type="password"
+          class="input-field form-control"
+          placeholder="رمز ورود"
+          name="password"
+          formControlName="password"
+        />
+        <div
+          class="password-validate"
+          *ngIf="
+            loginForm.get('password')?.hasError('required') &&
+            (loginForm.get('password')?.touched || formSubmitted)
+          "
+        >
+          رمز عبور معتبر استفاده کنید.
+        </div>
+        <span class="input-span"></span>
+        <span class="input-icon">
+          <fa-icon [icon]="lock"></fa-icon>
+        </span>
+      </div>
+      <div class="login-btn-container">
+        <button type="submit" class="login-btn btn btn-success">
+          <a [routerLink]="['/dashboard', username]" type="submit">ورود</a>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

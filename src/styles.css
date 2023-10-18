@@ -1,0 +1,44 @@
+/* You can add global styles to this file, and also import other style files */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Lalezar";
+  src: url("assets/Lalezar-Regular.ttf") format("truetype");
+}
+
+@layer components {
+  .menu-button {
+    @apply hover:bg-gray-200 dark:hover:bg-slate-800 hover:cursor-pointer px-4 py-2 text-sm dark:text-slate-50 flex justify-between items-center;
+  }
+  .text-light-mode {
+    @apply text-slate-950;
+  }
+
+  .text-dark-mode {
+    @apply dark:text-gray-300;
+  }
+  .modal-top {
+    @apply bg-slate-50 dark:bg-slate-800 px-4 pb-3 pt-3 sm:p-6 sm:pb-4;
+  }
+  .input-style {
+    @apply w-full pr-8 rounded-md p-1.5 shadow-sm hover:cursor-pointer dark:bg-slate-700 dark:text-gray-200 dark:placeholder:text-gray-200;
+  }
+  .modal-submit-button-delete {
+    @apply mt-3 inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm text-slate-50 shadow-sm hover:bg-red-500 sm:mt-0 sm:w-auto;
+  }
+
+  .modal-submit-button-add {
+    @apply mt-3 inline-flex w-full justify-center rounded-md bg-green-600  text-white px-3 py-2 text-sm shadow-sm ring-gray-300 hover:bg-green-500 sm:mt-0 sm:w-auto;
+  }
+
+  .modal-close-button {
+    @apply mt-3 inline-flex w-full justify-center rounded-md bg-gray-50 px-3 py-2 text-sm text-gray-900 shadow-sm ring-gray-300 hover:bg-gray-200 sm:mt-0 sm:w-auto;
+  }
+}
+
+body {
+  font-family: "Lalezar";
+}
