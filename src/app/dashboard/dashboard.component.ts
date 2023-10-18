@@ -68,8 +68,15 @@ export class DashboardComponent implements OnInit {
     this.toggleTheme();
   }
 
-  onSearch() {
-    const searchTerm = this.nodeNameToAdd.toLowerCase();
+  deleteNode() {
+    const NewNodeInstanceToDelete = new NewNodeClass(this.nodeNameToDelete);
+    this.dataService.setData(NewNodeInstanceToDelete);
+    this.nodeNameToDelete = "";
+    this.isDeleteModalShow = !this.isDeleteModalShow;
+  }
+
+  onSearchToAdd() {
+    const searchTerm = this.nodeTargetToAdd.toLowerCase();
     this.filteredNodeId = this.dataService
       .getNodesId()
       .filter((nodeId) => nodeId.toLowerCase().includes(searchTerm));
@@ -77,29 +84,11 @@ export class DashboardComponent implements OnInit {
     this.finalResults = this.filteredNodeId.slice(0, 5);
   }
 
-  selectNode(nodeId: string) {
+  selectNodeToAdd(nodeId: string) {
     console.log("this node is selected : ", nodeId);
-    this.nodeNameToAdd = nodeId;
+    this.nodeTargetToAdd = nodeId;
+    this.nodeSourceToAdd = this.nodeNameToAdd;
     this.filteredNodeId = [];
-  }
-
-  showSetting() {
-    this.isSettingShow = !this.isSettingShow;
-  }
-
-  showDeleteModal() {
-    this.isDeleteModalShow = !this.isDeleteModalShow;
-  }
-
-  showAddModal() {
-    this.isAddModalShow = !this.isAddModalShow;
-  }
-
-  deleteNode() {
-    const NewNodeInstanceToDelete = new NewNodeClass(this.nodeNameToDelete);
-    this.dataService.setData(NewNodeInstanceToDelete);
-    this.nodeNameToDelete = "";
-    this.isDeleteModalShow = !this.isDeleteModalShow;
   }
 
   addNode() {
@@ -116,6 +105,18 @@ export class DashboardComponent implements OnInit {
     this.isAddModalShow = !this.isAddModalShow;
   }
 
+  showSetting() {
+    this.isSettingShow = !this.isSettingShow;
+  }
+
+  showDeleteModal() {
+    this.isDeleteModalShow = !this.isDeleteModalShow;
+  }
+
+  showAddModal() {
+    this.isAddModalShow = !this.isAddModalShow;
+  }
+
   checkTheme() {
     if (
       window.matchMedia &&
@@ -123,22 +124,13 @@ export class DashboardComponent implements OnInit {
     ) {
       console.log("Dark mode is preferred.");
       this.isDarkTheme = true;
-
-      // this work cause that mode change not been apply on refresh
-      // localStorage.setItem("userTheme", "dark");
     } else {
       console.log("Light mode is preferred.");
       this.isDarkTheme = false;
-
-      // this work cause that mode change not been apply on refresh
-      // localStorage.setItem('userTheme', 'light')
     }
-
-    // Check if the user has a theme preference saved in local storage
     const userTheme = localStorage.getItem("userTheme");
 
     if (userTheme !== null) {
-      // Use the saved theme preference from local storage
       this.isDarkTheme = userTheme === "dark";
     }
   }
