@@ -68,6 +68,21 @@ export class DashboardComponent implements OnInit {
     this.toggleTheme();
   }
 
+  selectNodeToDelete(nodeId: string) {
+    console.log("this node is selected : ", nodeId);
+    this.nodeNameToDelete = nodeId;
+    this.filteredNodeId = [];
+  }
+
+  onSearchToDelete() {
+    const searchTerm = this.nodeNameToDelete.toLowerCase();
+    this.filteredNodeId = this.dataService
+      .getNodesId()
+      .filter((nodeId) => nodeId.toLowerCase().includes(searchTerm));
+
+    this.finalResults = this.filteredNodeId.slice(0, 5);
+  }
+
   deleteNode() {
     const NewNodeInstanceToDelete = new NewNodeClass(this.nodeNameToDelete);
     this.dataService.setData(NewNodeInstanceToDelete);
@@ -102,6 +117,7 @@ export class DashboardComponent implements OnInit {
     this.nodeNameToAdd = "";
     this.nodeSourceToAdd = "";
     this.nodeTargetToAdd = "";
+    this.nodeColorToAdd = 1;
     this.isAddModalShow = !this.isAddModalShow;
   }
 

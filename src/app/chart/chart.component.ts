@@ -492,10 +492,10 @@ export class ChartComponent implements OnInit {
           };
 
           const newLink = {
-            source: newNodeInstance.source,
-            target: newNodeInstance.target,
-            value: 1,
-          };
+              source: newNodeInstance.source,
+              target: newNodeInstance.target,
+              value: 1,
+            };
 
           // Update data immutably
           this.data = {
@@ -504,8 +504,8 @@ export class ChartComponent implements OnInit {
           };
 
           // Re-create the chart
-          this.ReCreateChart();
-        }
+            this.ReCreateChart();
+                  }
       }
     );
   }

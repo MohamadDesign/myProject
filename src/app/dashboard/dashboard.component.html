@@ -113,10 +113,25 @@
                     class="mt-2 flex items-center"
                   >
                     <input
-                      [(ngModel)]="nodeNameToAdd"
+                      [(ngModel)]="nodeNameToDelete"
                       class="input-style"
+                      (input)="onSearchToDelete()"
                       placeholder="نام نود مورد نظر"
                     />
+                    <div
+                      class="mt-2 w-full bg-white border border-gray-300 rounded shadow-md absolute bottom-0 z-10"
+                      *ngIf="filteredNodeId.length > 0"
+                    >
+                      <ul class="py-2">
+                        <li
+                          *ngFor="let nodeId of finalResults"
+                          class="px-4 py-2 cursor-pointer hover:bg-gray-100"
+                          (click)="selectNodeToDelete(nodeId)"
+                        >
+                          {{ nodeId }}
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
