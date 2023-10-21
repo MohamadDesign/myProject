@@ -37,6 +37,10 @@
   .modal-close-button {
     @apply mt-3 inline-flex w-full justify-center rounded-md bg-gray-50 px-3 py-2 text-sm text-gray-900 shadow-sm ring-gray-300 hover:bg-gray-200 sm:mt-0 sm:w-auto;
   }
+
+  .modal-title-text {
+    @apply text-base font-semibold leading-6 text-light-mode text-dark-mode;
+  }
 }
 
 body {

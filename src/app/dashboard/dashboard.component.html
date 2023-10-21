@@ -213,7 +213,7 @@
               </div>
               <div class="mt-2">
                 <div class="mt-2">
-                  <div class="mt-2 flex items-center">
+                  <div class="relative mt-2 flex items-center">
                     <fa-icon
                       class="absolute mr-2 dark:text-white"
                       [icon]="color"
@@ -224,6 +224,12 @@
                       required
                       class="input-style"
                     />
+                    <button
+                      (click)="showGuidModal()"
+                      class="absolute inset-y-0 left-2 flex items-center pr-2"
+                    >
+                      <fa-icon [icon]="guid" class="text-yellow-300"></fa-icon>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -274,6 +280,112 @@
 
           <button
             (click)="showAddModal()"
+            type="button"
+            class="modal-close-button"
+          >
+            بستن
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Guid Modal  -->
+<div
+  [ngClass]="{ 'd-none': isGuidModalShow }"
+  class="relative z-10"
+  role="dialog"
+>
+  <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+
+  <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+    <div
+      class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"
+    >
+      <div
+        class="relative transform overflow-hidden rounded-lg bg-slate-50 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg"
+      >
+        <div class="modal-top">
+          <div class="sm:flex sm:items-start">
+            <div
+              class="flex h-24 w-24 flex-shrink-0 items-center justify-center rounded-full bg-yellow-100 sm:mx-0 sm:h-10 sm:w-10"
+            >
+              <fa-icon
+                [icon]="guid"
+                class="text-yellow-600 w-6 h-6 text-center"
+              ></fa-icon>
+            </div>
+            <div class="w-full mr-3 mt-2 text-end sm:ml-4 sm:mt-0 sm:text-left">
+              <h3
+                class="text-base font-semibold leading-6 text-light-mode text-dark-mode"
+                id="modal-title"
+              >
+                راهنما رنگ نود ها
+              </h3>
+              <div class="mt-2">
+                <div class="mt-2">
+                  <div *ngIf="!isGuidModalShow" class="mt-2 flex items-center">
+                    <!-- <table
+                      class="min-w-full divide-y divide-gray-200"
+                      dir="rtl"
+                    >
+                      <thead class="bg-gray-50">
+                        <tr class="text-center">
+                          <th class="modal-title-text text-dark">رنگ</th>
+                          <th class="modal-title-text text-dark">گروه</th>
+                          <th class="modal-title-text text-dark">نمونه</th>
+                        </tr>
+                      </thead>
+                      <tbody class="bg-white divide-y divide-gray-200">
+                        <tr class="rounded-md">
+                          <td class="px-6 py-4 whitespace-nowrap">جون دو</td>
+                          <td class="px-6 py-4 whitespace-nowrap">30</td>
+                          <td class="px-6 py-4 whitespace-nowrap">
+                            john@example.com
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table> -->
+
+                    <table class="w-100 rounded-lg overflow-hidden" dir="rtl">
+                      <thead>
+                        <tr class="bg-gray-200 text-center">
+                          <th class="modal-title-text text-dark p-2">رنگ</th>
+                          <th class="modal-title-text text-dark p-2">گروه</th>
+                        </tr>
+                      </thead>
+                      <tbody
+                        class="bg-white"
+                        *ngFor="let node of groupNodeList"
+                      >
+                        <tr
+                          class="hover:bg-gray-300 cursor-pointer"
+                          (click)="selectedGroupColor(node.group)"
+                        >
+                          <td class="px-4 py-2 whitespace-nowrap text-center">
+                            <fa-icon
+                              [icon]="circle"
+                              [class]="node.color"
+                            ></fa-icon>
+                          </td>
+                          <td class="px-4 py-2 whitespace-nowrap text-center">
+                            {{ node.group }}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="bg-gray-100 dark:bg-slate-800 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 justify-between"
+        >
+          <button
+            (click)="showGuidModal()"
             type="button"
             class="modal-close-button"
           >

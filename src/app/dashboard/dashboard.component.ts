@@ -14,6 +14,8 @@ import {
   faPalette,
   faPlay,
   faDatabase,
+  faQuestionCircle,
+  faCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { ActivatedRoute } from "@angular/router";
 import { DataService } from "../data.service";
@@ -38,12 +40,15 @@ export class DashboardComponent implements OnInit {
   darkMode = faMoon;
   add = faPlus;
   remove = faMinus;
+  guid = faQuestionCircle;
+  circle = faCircle;
 
   username: string = "";
   password: any = "";
   isSettingShow: boolean = true;
   isDeleteModalShow: boolean = true;
   isAddModalShow: boolean = true;
+  isGuidModalShow: boolean = true;
   nodeNameToDelete: string = "";
   nodeNameToAdd: string = "";
   nodeColorToAdd: number = 1;
@@ -53,6 +58,18 @@ export class DashboardComponent implements OnInit {
   themeTitle: string = "";
   filteredNodeId: string[] = [];
   finalResults: string[] = [];
+  groupNodeList = [
+    { group: 1, color: "text-[#1f77b4]" },
+    { group: 2, color: "text-[#ff7f0e]" },
+    { group: 3, color: "text-[#2ca02c]" },
+    { group: 4, color: "text-[#d62728]" },
+    { group: 5, color: "text-[#9467bd]" },
+    { group: 6, color: "text-[#e377c2]" },
+    { group: 7, color: "text-[#7f7f7f]" },
+    { group: 8, color: "text-[#bcbd22]" },
+    { group: 9, color: "text-[#17becf]" },
+    { group: 10, color: "text-[#1f77b4]" },
+  ];
 
   constructor(
     private dataService: DataService,
@@ -121,6 +138,12 @@ export class DashboardComponent implements OnInit {
     this.isAddModalShow = !this.isAddModalShow;
   }
 
+  selectedGroupColor(nodeGroup: number) {
+    console.log(nodeGroup);
+    this.isGuidModalShow = !this.isGuidModalShow;
+    this.nodeColorToAdd = nodeGroup;
+  }
+
   showSetting() {
     this.isSettingShow = !this.isSettingShow;
   }
@@ -131,6 +154,10 @@ export class DashboardComponent implements OnInit {
 
   showAddModal() {
     this.isAddModalShow = !this.isAddModalShow;
+  }
+
+  showGuidModal() {
+    this.isGuidModalShow = !this.isGuidModalShow;
   }
 
   checkTheme() {
